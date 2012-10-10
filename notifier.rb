@@ -15,6 +15,4 @@ get '/fetch' do
 		end
 		system "./fetch_hook"
 	end
-
-	not_found
 end
