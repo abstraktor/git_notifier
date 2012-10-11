@@ -1,6 +1,8 @@
 require 'sinatra'
 require 'net/http'
 
+File.open('hpigit_notifier.pid', 'w') {|f| f.write Process.pid }
+
 set :port, 5050
 
 get '/fetch' do
