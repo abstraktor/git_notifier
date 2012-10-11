@@ -9,9 +9,10 @@ get '/fetch' do
 		# forward to all other listeners
 		begin
 		File.read('forward_uri').lines do |line|
-			Net::HTTP.get URI(line)
+			Net::HTTP.get URI(line.strip)
 		end
-		rescue Net::HTTPBadResponse
+		rescue Net::HTTPBadResponse => e
+			puts e.inspect
 		end
 		system "./fetch_hook"
 	end
