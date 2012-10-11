@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'net/http'
+require 'httparty'
 
 File.open('hpigit_notifier.pid', 'w') {|f| f.write Process.pid }
 
@@ -11,11 +11,12 @@ get '/fetch' do
 		# forward to all other listeners
 		begin
 		File.read('forward_uri').lines do |line|
-			Net::HTTP.get URI(line.strip)
+			HTTParty.get line.strip
 		end
-		rescue Net::HTTPBadResponse => e
-			puts e.inspect
+		rescue HTTParty::ResponseError => e
+			puts e.response.inspect
 		end
+
 		system "./fetch_hook"
 	end
 end
