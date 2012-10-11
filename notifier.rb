@@ -1,7 +1,6 @@
 require 'sinatra'
+require './sinatra/write_pid.rb'
 require 'httparty'
-
-File.open('hpigit_notifier.pid', 'w') {|f| f.write Process.pid }
 
 set :port, 5050
 
