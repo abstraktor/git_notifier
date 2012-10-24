@@ -18,4 +18,5 @@ get '/fetch' do
 
 		system "./fetch_hook"
 	end
+	200
 end
