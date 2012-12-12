@@ -18,7 +18,9 @@ get '/fetch' do
 			puts e.response.inspect
 		end
 
-		system "#{path_prefix}/fetch_hook"
+		Dir.chdir('..') do
+			system "#{path_prefix}/fetch_hook"
+		end
 	end
 	200
 end
